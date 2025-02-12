@@ -2,3 +2,8 @@
   max-height: 50px;
   padding: 1rem;
 }
+
+.tech-logo-text {
+  display: flex;
+  justify-content: center;
+}

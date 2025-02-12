@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-// import "../components/animated_image.css"
 
-import cat from "../assets/cat yawn.png"
-import cattail from "../assets/cat yawn0.png"
-import catyawn1 from "../assets/cat yawn1.png"
-import catyawn2 from "../assets/cat yawn2.png"
-import catyawn3 from "../assets/cat yawn3.png"
+import cat from "../assets/cat/cat yawn.png"
+import cattail from "../assets/cat/cat yawn0.png"
+import catyawn1 from "../assets/cat/cat yawn1.png"
+import catyawn2 from "../assets/cat/cat yawn2.png"
+import catyawn3 from "../assets/cat/cat yawn3.png"
 
 const backgroundFrames = [cat, cattail] // Looping animation
 const yawnFrames = [catyawn1, catyawn2, catyawn3] // Yawn animation
@@ -25,9 +24,9 @@ const AnimatedFrames = () => {
     }, 500) // Change every 500ms
 
     return () => clearInterval(interval)
-  }, [isHovering]) // Restart when hover state changes
+  }, [isHovering])
 
-  // Handle hover event
+  // Yawn animation on hover
   useEffect(() => {
     if (!isHovering) return // Do nothing if not hovering
 
@@ -37,18 +36,22 @@ const AnimatedFrames = () => {
         setYawnIndex(frame)
         frame++
       } else {
-        setIsHovering(false) // Reset back to normal animation
+        setTimeout(() => {
+          setYawnIndex(null) // Reset animation back to background frames
+          setIsHovering(false)
+        }, 50) // Small delay to avoid flicker
       }
-    }, 300) // Faster transition for yawn
+    }, 350) // Slightly increased time for smoother animation
 
     return () => clearInterval(interval)
   }, [isHovering])
 
   return (
     <motion.img
-      key={isHovering ? `yawn-${yawnIndex}` : `bg-${backgroundIndex}`} // Ensures smooth transition
       src={
-        isHovering && yawnIndex !== null ? yawnFrames[yawnIndex] : backgroundFrames[backgroundIndex]
+        isHovering && yawnIndex !== null
+          ? yawnFrames[yawnIndex]
+          : backgroundFrames[backgroundIndex] || cat // Ensure fallback image
       }
       alt="Animated Cat"
       className="cat-animation"
@@ -60,8 +63,10 @@ const AnimatedFrames = () => {
         setYawnIndex(0) // Start yawn animation from the first frame
       }}
       onMouseLeave={() => {
-        setIsHovering(false)
-        setYawnIndex(null) // Reset to background animation
+        setTimeout(() => {
+          setYawnIndex(null)
+          setIsHovering(false)
+        }, 10) // Delay prevents brief disappearance
       }}
     />
   )
