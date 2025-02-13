@@ -15,7 +15,7 @@ const Canvas = forwardRef((props, ref) => {
     const resizeCanvas = () => {
       if (canvas.parentElement) {
         canvas.width = canvas.parentElement.clientWidth
-        canvas.height = canvas.parentElement.clientHeight
+        canvas.height = document.documentElement.scrollHeight
       }
     }
     resizeCanvas()

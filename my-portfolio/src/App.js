@@ -3,7 +3,11 @@ import "./App.css"
 import AnimatedFrames from "./components/AnimatedFrames"
 import TechLogo from "./components/TechLogo"
 import Canvas from "./components/Canvas"
-const NUM_STARS = 50
+import DraggableItem from "./components/DraggableItem"
+import Translay from "./assets/my-projects/translator-app-logo.png"
+
+import Fishy from "./assets/fishy.png"
+const NUM_STARS = 75
 
 // ✅ Ensure stars cover the full scrollable height
 const generateStars = () => {
@@ -57,11 +61,18 @@ const App = () => {
       const maxScale = 2.0
       const sizeScale = minScale + (maxScale - minScale) * flicker
 
-      const newY = star.y + scrollY * star.speed * 0.15
+      // Update the Y position of the stars based on scroll
+      let newY = star.y + scrollY * star.speed * 0.15
       const size = star.size * sizeScale
 
+      // Prevent the star from going beyond the bottom of the canvas
+      if (newY > canvas.height) {
+        newY = Math.random() * canvas.height // Reset star to top
+        star.x = Math.random() * canvas.width // Reset to a new random x position
+      }
+
       ctx.fillStyle = `rgba(253, 186, 95, ${star.opacity * flicker})`
-      drawSparkle(ctx, star.x, newY % canvas.height, size)
+      drawSparkle(ctx, star.x, newY, size) // Draw the star
     })
   }, [scrollY, stars])
 
@@ -78,11 +89,11 @@ const App = () => {
 
   const drawSparkle = (ctx, x, y, size) => {
     ctx.beginPath()
-    ctx.moveTo(x, y - size * 1.5) // 🔥 Taller Top point
+    ctx.moveTo(x, y - size * 1.2) // 🔥 Taller Top point
     ctx.lineTo(x + size * 0.3, y - size * 0.5) // Upper right (shorter width)
     ctx.lineTo(x + size * 0.8, y) // Right point (narrower)
     ctx.lineTo(x + size * 0.3, y + size * 0.5) // Lower right
-    ctx.lineTo(x, y + size * 1.5) // 🔥 Taller Bottom point
+    ctx.lineTo(x, y + size * 1.2) // 🔥 Taller Bottom point
     ctx.lineTo(x - size * 0.3, y + size * 0.5) // Lower left
     ctx.lineTo(x - size * 0.8, y) // Left point (narrower)
     ctx.lineTo(x - size * 0.3, y - size * 0.5) // Upper left
@@ -130,6 +141,9 @@ const App = () => {
               </li>
             </ul>
           </nav>
+          <div className="fishy-container">
+            <DraggableItem image={Fishy}></DraggableItem>
+          </div>
         </header>
         <div className="centered-page">
           <section id="about">
@@ -170,26 +184,98 @@ const App = () => {
           </section>
 
           <section id="projects">
-            <h2>Cool Stuff I've Built</h2>
-            <div className="project">
-              <h3>Translucent</h3>
-              <p>Description of the first project.</p>
-            </div>
-            <div className="project">
-              <h3>Project 2</h3>
-              <p>Description of the second project.</p>
+            <h2 className="flex-centred">Cool Stuff I've Built</h2>
+            <div className="flex-row">
+              <div className="project flex-centered-column">
+                <h3>Translay</h3>
+                <img src={Translay} className="translay-logo" alt="my translator application"></img>
+                <p>Description of the first project.</p>
+              </div>
+              <div className="project">
+                <h3>Project 2</h3>
+                <p>Description of the second project.</p>
+              </div>
             </div>
           </section>
 
-          <section id="cv">
+          <section>
             <h2>Experience</h2>
-            <div className="job">
-              <h3>Previous Employer 1</h3>
-              <p>Role and responsibilities.</p>
-            </div>
-            <div className="job">
-              <h3>Previous Employer 2</h3>
-              <p>Role and responsibilities.</p>
+            <div id="cv">
+              {" "}
+              <div className="">
+                <div className="job">
+                  <h3>Previous Employer 1</h3>
+                  <p>Role and responsibilities.</p>
+                </div>
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>{" "}
+                <div className="job">
+                  <h3>Previous Employer 2</h3>
+                  <p>Role and responsibilities.</p>
+                </div>
+              </div>
             </div>
           </section>
 

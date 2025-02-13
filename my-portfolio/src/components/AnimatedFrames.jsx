@@ -1,20 +1,25 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
-import cat from "../assets/cat/cat yawn.png"
-import cattail from "../assets/cat/cat yawn0.png"
+import cattail from "../assets/cat/cat tail0.png"
+import cattail1 from "../assets/cat/cat tail1.png"
+import cattail2 from "../assets/cat/cat tail2.png"
 import catyawn1 from "../assets/cat/cat yawn1.png"
 import catyawn2 from "../assets/cat/cat yawn2.png"
 import catyawn3 from "../assets/cat/cat yawn3.png"
+import catmeow from "../assets/audio/cat-yawn-meow.wav"
 
-const backgroundFrames = [cat, cattail] // Looping animation
+const backgroundFrames = [cattail, cattail2] // Looping animation
 const yawnFrames = [catyawn1, catyawn2, catyawn3] // Yawn animation
 
 const AnimatedFrames = () => {
   const [backgroundIndex, setBackgroundIndex] = useState(0)
   const [yawnIndex, setYawnIndex] = useState(null) // Null means use background animation
   const [isHovering, setIsHovering] = useState(false)
+  const [hasInteracted, setHasInteracted] = useState(false) // Track user interaction
 
+  const audio = new Audio(catmeow)
+  audio.preload = "auto" // Preload the audio file
   // Looping background animation
   useEffect(() => {
     if (isHovering) return // Pause looping animation during hover
@@ -44,14 +49,25 @@ const AnimatedFrames = () => {
     }, 350) // Slightly increased time for smoother animation
 
     return () => clearInterval(interval)
-  }, [isHovering])
+  }, [isHovering]) // Handle user interaction (e.g., click anywhere)
+  useEffect(() => {
+    const handleClick = () => {
+      setHasInteracted(true) // User has interacted with the page
+    }
+
+    // Add event listener for click anywhere on the document
+    document.addEventListener("click", handleClick)
+
+    // Cleanup on component unmount
+    return () => document.removeEventListener("click", handleClick)
+  }, [])
 
   return (
     <motion.img
       src={
         isHovering && yawnIndex !== null
           ? yawnFrames[yawnIndex]
-          : backgroundFrames[backgroundIndex] || cat // Ensure fallback image
+          : backgroundFrames[backgroundIndex] || cattail // Ensure fallback image
       }
       alt="Animated Cat"
       className="cat-animation"
@@ -61,6 +77,11 @@ const AnimatedFrames = () => {
       onMouseOver={() => {
         setIsHovering(true)
         setYawnIndex(0) // Start yawn animation from the first frame
+        setTimeout(() => {
+          if (hasInteracted) {
+            audio.play() // Play audio on hover, after user interaction
+          }
+        }, 600)
       }}
       onMouseLeave={() => {
         setTimeout(() => {
