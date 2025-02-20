@@ -1,4 +1,4 @@
-import "../components/tech_logo.css"
+import "../styles/tech_logo.css"
 
 import JS from "../assets/tech-stack/js.png"
 import TS from "../assets/tech-stack/ts.png"
@@ -14,6 +14,9 @@ import ReactImage from "../assets/tech-stack/react.png"
 import Unity from "../assets/tech-stack/unity.png"
 import UnrealEngine from "../assets/tech-stack/unreal_engine.png"
 import Vue from "../assets/tech-stack/vue.png"
+import Python from "../assets/tech-stack/python.png"
+import CPlus from "../assets/tech-stack/cplusplus.png"
+import CSharp from "../assets/tech-stack/csharp.png"
 
 // Map of tech names to their corresponding images
 const techMap = {
@@ -30,7 +33,10 @@ const techMap = {
   React: { image: ReactImage, name: "React" },
   Unity: { image: Unity, name: "Unity" },
   "Unreal Engine": { image: UnrealEngine, name: "Unreal Engine" },
-  Vue: { image: Vue, name: "Vue.js" }
+  Vue: { image: Vue, name: "Vue.js" },
+  "C++": { image: CPlus, name: "C++" },
+  "C#": { image: CSharp, name: "C#" },
+  Python: { image: Python, name: "Python" }
 }
 
 const TechLogo = ({ tech }) => {

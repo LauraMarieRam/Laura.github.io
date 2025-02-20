@@ -1,12 +1,23 @@
 import React, { useRef, useEffect, useState, useCallback } from "react"
-import "./App.css"
-import AnimatedFrames from "./components/AnimatedFrames"
+import "./styles/global.css"
 import TechLogo from "./components/TechLogo"
 import Canvas from "./components/Canvas"
 import DraggableItem from "./components/DraggableItem"
 import Translay from "./assets/my-projects/translator-app-logo.png"
+import MonsterBakery from "./assets/my-projects/monster_bakery.png"
+import Novelore from "./assets/my-projects/novelore.png"
+import AWSDevAss from "./assets/certs/aws_developer_associate.png"
+import ProScrumDev from "./assets/certs/professional_scrum_developer.png"
 
-import Fishy from "./assets/fishy.png"
+import VolumeToggle from "./components/VolumeToggle"
+import { VolumeProvider } from "./VolumeContext" // Import the provider
+import DangerZone from "./components/DangerZone"
+import ExperienceCard from "./components/ExperienceCard"
+import Nukon from "./assets/jobs/nukon-logo.png"
+import SageAuto from "./assets/jobs/sage-automation-logo.png"
+import ProjectCard from "./components/ProjectCard"
+
+import Fishy from "./assets/fishy/fishy.png"
 const NUM_STARS = 75
 
 // ✅ Ensure stars cover the full scrollable height
@@ -32,6 +43,9 @@ const App = () => {
   const [scrollY, setScrollY] = useState(0)
   const canvasRef = useRef(null)
   const scrollRef = useRef(null) // ✅ Keeping your scroll reference
+  const [isVolumeOn, setIsVolumeOn] = useState(false)
+  const [dangerZoneRef, setDangerZoneRef] = useState(null)
+  const [isHovering, setIsHovering] = useState(false)
 
   // ✅ Generate stars once page has loaded
   useEffect(() => {
@@ -114,181 +128,250 @@ const App = () => {
   return (
     <div>
       <Canvas ref={canvasRef} className="canvas-background" />
-      <div>
-        <header>
-          <div className="title">
-            <div className="cat-image">
-              <AnimatedFrames />
-            </div>
-            <h1>Laura Savaglia</h1>
+      <VolumeProvider>
+        <div>
+          <div className="volume-container">
+            <VolumeToggle onToggleVolume={setIsVolumeOn} />{" "}
           </div>
-          <nav>
-            <ul>
-              <li>
-                <a href="#technologies">Technologies I Work With</a>
-              </li>
-              <li>
-                <a href="#projects">Cool Stuff I've Built</a>
-              </li>
-              <li>
-                <a href="#cv">CV</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
-              </li>
-              <li>
-                <a href="#hobbies">Hobbies</a>
-              </li>
-            </ul>
-          </nav>
-          <div className="fishy-container">
-            <DraggableItem image={Fishy}></DraggableItem>
+          <header>
+            <div className="title">
+              <div className="cat-image">
+                <DangerZone setDangerZoneRef={setDangerZoneRef} />
+              </div>{" "}
+              <h1>Laura Savaglia</h1>
+            </div>
+            <nav>
+              <ul>
+                <li>
+                  <a href="#technologies">Technologies I Work With</a>
+                </li>
+                <li>
+                  <a href="#projects">Cool Stuff I've Built</a>
+                </li>
+                <li>
+                  <a href="#experience">Experience</a>
+                </li>{" "}
+                <li>
+                  <a href="#certifications">Certifications</a>
+                </li>
+                <li>
+                  <a href="#hobbies">Hobbies</a>
+                </li>
+                <li>
+                  <a href="#contact">Contact</a>
+                </li>
+              </ul>
+            </nav>
+            <div className="fishy-container">
+              <DraggableItem image={Fishy} dangerZoneRef={dangerZoneRef}></DraggableItem>
+            </div>
+          </header>
+          <div className="centered-page">
+            <section id="about">
+              <p>
+                I am a passionate software developer with experience in full-stack development, AI,
+                and game development. Skilled in TypeScript, React, Python, and cloud technologies,
+                I thrive on building innovative solutions. With a strong foundation in both academia
+                and industry, I bring a blend of technical expertise and creativity to every
+                project.
+              </p>
+            </section>
+            <section id="technologies">
+              <h2>Technologies I Work With</h2>
+              <div className="scroll-container">
+                <button className="scroll-button left" onClick={() => scroll("left")}>
+                  ‹
+                </button>
+                <div className="horizontal-scroll" ref={scrollRef}>
+                  <TechLogo tech="JavaScript" />
+                  <TechLogo tech="React" />
+                  <TechLogo tech="TypeScript" />
+                  <TechLogo tech="Docker" />
+                  <TechLogo tech="Vue" />
+                  <TechLogo tech="AWS" />
+                  <TechLogo tech="Android Studio" />
+                  <TechLogo tech="Azure" />
+                  <TechLogo tech="DynamoDB" />
+                  <TechLogo tech="Git" />
+                  <TechLogo tech="NodeJS" />
+                  <TechLogo tech="PostgreSQL" />
+                  <TechLogo tech="Unity" />
+                  <TechLogo tech="Unreal Engine" />
+                  <TechLogo tech="Python" />
+                  <TechLogo tech="C++" />
+                  <TechLogo tech="C#" />
+                </div>
+                <button className="scroll-button right" onClick={() => scroll("right")}>
+                  ›
+                </button>
+              </div>
+            </section>
+            <section id="projects">
+              <h2 className="flex-centred">Cool Stuff I've Built</h2>
+              <div className="flex-row">
+                {" "}
+                <div className="scroll-container">
+                  <button className="scroll-button left" onClick={() => scroll("left")}>
+                    ‹
+                  </button>
+                  <div className="horizontal-scroll" ref={scrollRef}>
+                    <ProjectCard title="Translay" image={Translay} summary={"Coming Soon..."} />
+                    <ProjectCard title="Novelore" image={Novelore} summary={"Coming Soon..."} />
+                    <ProjectCard
+                      title="Monster Bakery"
+                      image={MonsterBakery}
+                      summary={"Coming Soon..."}
+                    />
+                  </div>
+                  <button className="scroll-button right" onClick={() => scroll("right")}>
+                    ›
+                  </button>
+                </div>
+              </div>
+            </section>
+            <section>
+              <h2>Experience</h2>
+              <div id="experience">
+                {" "}
+                <div className="">
+                  <div className="job">
+                    <ExperienceCard
+                      employer="Nukon (Sage Group)"
+                      employerLogo={Nukon}
+                      title="Developer"
+                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
+•	Typescript
+•	React
+•	AWS
+•	Azure
+•	Python
+"
+                      startDate="Nov 23"
+                      endDate="Present"
+                      latest={true}
+                    />
+                  </div>
+                  <div className="job">
+                    <ExperienceCard
+                      employer="Sage Automation (Sage Group)"
+                      employerLogo={SageAuto}
+                      title="Engineering Intern"
+                      summary="During which I used the following technologies to build a conversational fact gathering artificial intelligence:
+•	Typescript
+•	Vue
+•	Gitlab
+
+"
+                      startDate="July 2023"
+                      endDate="December 2023"
+                    />
+                  </div>
+                  <div className="job">
+                    <ExperienceCard
+                      employer="Nukon"
+                      employerLogo={Nukon}
+                      title="Developer"
+                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
+•	Typescript
+•	React
+•	AWS
+•	Azure
+•	Python
+"
+                      startDate="Nov 23"
+                      endDate="Present"
+                    />
+                  </div>
+                  <div className="job">
+                    <ExperienceCard
+                      employer="Nukon"
+                      employerLogo={Nukon}
+                      title="Developer"
+                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
+•	Typescript
+•	React
+•	AWS
+•	Azure
+•	Python
+"
+                      startDate="Nov 23"
+                      endDate="Present"
+                    />
+                  </div>
+                  <div className="job">
+                    <ExperienceCard
+                      employer="Nukon"
+                      employerLogo={Nukon}
+                      title="Developer"
+                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
+•	Typescript
+•	React
+•	AWS
+•	Azure
+•	Python
+"
+                      startDate="Nov 23"
+                      endDate="Present"
+                    />
+                  </div>
+                  <div className="job">
+                    <ExperienceCard
+                      employer="Nukon"
+                      employerLogo={Nukon}
+                      title="Developer"
+                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
+•	Typescript
+•	React
+•	AWS
+•	Azure
+•	Python
+"
+                      startDate="Nov 23"
+                      endDate="Present"
+                    />
+                  </div>
+                  <div className="job">
+                    <ExperienceCard
+                      employer="Nukon"
+                      employerLogo={Nukon}
+                      title="Developer"
+                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
+•	Typescript
+•	React
+•	AWS
+•	Azure
+•	Python
+"
+                      startDate="Nov 23"
+                      endDate="Present"
+                    />
+                  </div>
+                </div>
+              </div>
+            </section>{" "}
+            <section id="certifications">
+              <h2>Certifications</h2>
+              <a href="https://www.credly.com/badges/2f4b8764-54b6-4301-bcf8-6623e7ba1fa9">
+                <img className="cert" alt="aws associate developer" src={AWSDevAss} />
+              </a>
+              <img className="cert" alt="professional scrum developer" src={ProScrumDev} />{" "}
+            </section>
+            <section id="hobbies">
+              <h2>Hobbies</h2>
+              <p>Programming, Dance, Saying "big yawn" whenever my cat yawns</p>
+            </section>{" "}
+            <section id="contact">
+              <h2>Contact</h2>
+              <p>
+                Email: <a href="mailto:laura.savaglia@outlook.com">laura.savaglia@outlook.com</a>
+              </p>
+            </section>
+            <section id="built-with">
+              <p>This website was built with React.</p>
+            </section>
           </div>
-        </header>
-        <div className="centered-page">
-          <section id="about">
-            <p>
-              I am a passionate software developer with experience in full-stack development, AI,
-              and game development. Skilled in TypeScript, React, Python, and cloud technologies, I
-              thrive on building innovative solutions. With a strong foundation in both academia and
-              industry, I bring a blend of technical expertise and creativity to every project.
-            </p>
-          </section>
-
-          <section id="technologies">
-            <h2>Technologies I Work With</h2>
-            <div className="scroll-container">
-              <button className="scroll-button left" onClick={() => scroll("left")}>
-                ‹
-              </button>
-              <div className="horizontal-scroll" ref={scrollRef}>
-                <TechLogo tech="JavaScript" />
-                <TechLogo tech="React" />
-                <TechLogo tech="TypeScript" />
-                <TechLogo tech="Docker" />
-                <TechLogo tech="Vue" />
-                <TechLogo tech="AWS" />
-                <TechLogo tech="Android Studio" />
-                <TechLogo tech="Azure" />
-                <TechLogo tech="DynamoDB" />
-                <TechLogo tech="Git" />
-                <TechLogo tech="NodeJS" />
-                <TechLogo tech="PostgreSQL" />
-                <TechLogo tech="Unity" />
-                <TechLogo tech="Unreal Engine" />
-              </div>
-              <button className="scroll-button right" onClick={() => scroll("right")}>
-                ›
-              </button>
-            </div>
-          </section>
-
-          <section id="projects">
-            <h2 className="flex-centred">Cool Stuff I've Built</h2>
-            <div className="flex-row">
-              <div className="project flex-centered-column">
-                <h3>Translay</h3>
-                <img src={Translay} className="translay-logo" alt="my translator application"></img>
-                <p>Description of the first project.</p>
-              </div>
-              <div className="project">
-                <h3>Project 2</h3>
-                <p>Description of the second project.</p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2>Experience</h2>
-            <div id="cv">
-              {" "}
-              <div className="">
-                <div className="job">
-                  <h3>Previous Employer 1</h3>
-                  <p>Role and responsibilities.</p>
-                </div>
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>{" "}
-                <div className="job">
-                  <h3>Previous Employer 2</h3>
-                  <p>Role and responsibilities.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: developer@example.com</p>
-          </section>
-          <section id="hobbies">
-            <h2>Hobbies</h2>
-            <p>Programming, Dance, Saying "big yawn" whenever my cat yawns</p>
-          </section>
-        </div>
-      </div>
+        </div>{" "}
+      </VolumeProvider>
     </div>
   )
 }

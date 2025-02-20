@@ -1,3 +1,17 @@
+:root {
+  --primary-colour: #5158bb;
+  --secondary-colour: #e289b2;
+  --tertiary-colour: rgba(253, 186, 95);
+  --text-colour: white;
+}
+a {
+  color: var(--text-colour);
+}
+.cert {
+  max-width: 5rem;
+  max-height: 5rem;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -60,6 +74,8 @@ footer {
 }
 .fishy-container {
   z-index: 3;
+  min-height: 64px;
+  padding-top: 10px;
 }
 
 .title {
@@ -181,13 +197,30 @@ p {
 .flex-row {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .flex-centered-column {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0rem 1rem;
 }
 .translay-logo {
   max-height: 150px;
+}
+
+.icon {
+  background-color: rgba(1, 1, 1, 0);
+  box-shadow: none;
+  border-width: 0px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.volume-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.job-info {
+  padding: 0 3rem;
 }

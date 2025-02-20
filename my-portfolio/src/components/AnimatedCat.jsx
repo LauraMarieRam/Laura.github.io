@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { motion } from "framer-motion"
+import { VolumeContext } from "../VolumeContext"
 
 import cattail from "../assets/cat/cat tail0.png"
 import cattail1 from "../assets/cat/cat tail1.png"
@@ -15,12 +16,14 @@ const yawnFrames = [catyawn1, catyawn2, catyawn3] // Yawn animation
 const AnimatedFrames = () => {
   const [backgroundIndex, setBackgroundIndex] = useState(0)
   const [yawnIndex, setYawnIndex] = useState(null) // Null means use background animation
-  const [isHovering, setIsHovering] = useState(false)
+  const [isHovering, setIsLocalHovering] = useState(false)
   const [hasInteracted, setHasInteracted] = useState(false) // Track user interaction
+  const { isVolumeOn } = useContext(VolumeContext)
 
   const audio = new Audio(catmeow)
   audio.preload = "auto" // Preload the audio file
   // Looping background animation
+
   useEffect(() => {
     if (isHovering) return // Pause looping animation during hover
 
@@ -43,7 +46,7 @@ const AnimatedFrames = () => {
       } else {
         setTimeout(() => {
           setYawnIndex(null) // Reset animation back to background frames
-          setIsHovering(false)
+          setIsLocalHovering(false)
         }, 50) // Small delay to avoid flicker
       }
     }, 350) // Slightly increased time for smoother animation
@@ -75,10 +78,10 @@ const AnimatedFrames = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
       onMouseOver={() => {
-        setIsHovering(true)
+        setIsLocalHovering(true)
         setYawnIndex(0) // Start yawn animation from the first frame
         setTimeout(() => {
-          if (hasInteracted) {
+          if (hasInteracted && isVolumeOn) {
             audio.play() // Play audio on hover, after user interaction
           }
         }, 600)
@@ -86,7 +89,7 @@ const AnimatedFrames = () => {
       onMouseLeave={() => {
         setTimeout(() => {
           setYawnIndex(null)
-          setIsHovering(false)
+          setIsLocalHovering(false)
         }, 10) // Delay prevents brief disappearance
       }}
     />
