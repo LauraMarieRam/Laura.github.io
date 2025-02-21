@@ -1,7 +1,16 @@
 import React from "react"
 import "../styles/experience_card.css"
 
-const ExperienceCard = ({ employer, title, employerLogo, summary, startDate, endDate, latest }) => {
+const ExperienceCard = ({
+  employer,
+  title,
+  employerLogo,
+  summary,
+  startDate,
+  endDate,
+  latest,
+  duties
+}) => {
   return (
     <div className="card">
       {" "}
@@ -17,11 +26,23 @@ const ExperienceCard = ({ employer, title, employerLogo, summary, startDate, end
           <div>{employer}</div>
           <div className="job-details">
             <div>{title}</div>
-            <div className="job-summary">{summary}</div>
+            <div className="job-summary">{summary}</div>{" "}
+            {duties && duties.length > 0 ? (
+              <div className="duties">
+                <ul>
+                  {duties.map((duty, index) => (
+                    <li key={index}>{duty}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="job-date">
-          {startDate} - {endDate}
+          <div className="start-date">{startDate}</div> <div className="date-delimiter"> - </div>{" "}
+          <div className="end-date"> {endDate}</div>
         </div>
       </div>
     </div>

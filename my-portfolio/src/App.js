@@ -15,6 +15,12 @@ import DangerZone from "./components/DangerZone"
 import ExperienceCard from "./components/ExperienceCard"
 import Nukon from "./assets/jobs/nukon-logo.png"
 import SageAuto from "./assets/jobs/sage-automation-logo.png"
+import FlindersUni from "./assets/jobs/flinders_logo.png"
+import FUCS from "./assets/jobs/fucs.png"
+import FlindersStudentCouncil from "./assets/jobs/flinders_student_council.png"
+import Valnet from "./assets/jobs/valnet.png"
+import Datacom from "./assets/jobs/datacom.png"
+
 import ProjectCard from "./components/ProjectCard"
 
 import Fishy from "./assets/fishy/fishy.png"
@@ -239,13 +245,8 @@ const App = () => {
                       employer="Nukon (Sage Group)"
                       employerLogo={Nukon}
                       title="Developer"
-                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
-•	Typescript
-•	React
-•	AWS
-•	Azure
-•	Python
-"
+                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:"
+                      duties={["Typescript", "React", "AWS", "Azure", "Python"]}
                       startDate="Nov 23"
                       endDate="Present"
                       latest={true}
@@ -256,95 +257,99 @@ const App = () => {
                       employer="Sage Automation (Sage Group)"
                       employerLogo={SageAuto}
                       title="Engineering Intern"
-                      summary="During which I used the following technologies to build a conversational fact gathering artificial intelligence:
-•	Typescript
-•	Vue
-•	Gitlab
+                      summary="During which I used the following technologies to build a conversational fact gathering artificial intelligence:"
+                      duties={["Typescript", "Vue", "Gitlab"]}
+                      startDate="Jul 2023"
+                      endDate="Dec 2023"
+                    />
+                    <div className="job">
+                      <ExperienceCard
+                        employer="Flinders University College of Science and Engineering"
+                        employerLogo={FlindersUni}
+                        title="Casual Academic Staff"
+                        summary="Where I performed various duties including:"
+                        duties={[
+                          "Lecturing on The Fundamentals of Computational Intelligence",
+                          "Grading",
+                          "Advising on Curriculum",
+                          "Mentoring Students"
+                        ]}
+                        startDate="Feb 22"
+                        endDate="Jul 23"
+                      />
+                    </div>
 
-"
-                      startDate="July 2023"
-                      endDate="December 2023"
-                    />
-                  </div>
-                  <div className="job">
-                    <ExperienceCard
-                      employer="Nukon"
-                      employerLogo={Nukon}
-                      title="Developer"
-                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
-•	Typescript
-•	React
-•	AWS
-•	Azure
-•	Python
-"
-                      startDate="Nov 23"
-                      endDate="Present"
-                    />
-                  </div>
-                  <div className="job">
-                    <ExperienceCard
-                      employer="Nukon"
-                      employerLogo={Nukon}
-                      title="Developer"
-                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
-•	Typescript
-•	React
-•	AWS
-•	Azure
-•	Python
-"
-                      startDate="Nov 23"
-                      endDate="Present"
-                    />
-                  </div>
-                  <div className="job">
-                    <ExperienceCard
-                      employer="Nukon"
-                      employerLogo={Nukon}
-                      title="Developer"
-                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
-•	Typescript
-•	React
-•	AWS
-•	Azure
-•	Python
-"
-                      startDate="Nov 23"
-                      endDate="Present"
-                    />
-                  </div>
-                  <div className="job">
-                    <ExperienceCard
-                      employer="Nukon"
-                      employerLogo={Nukon}
-                      title="Developer"
-                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
-•	Typescript
-•	React
-•	AWS
-•	Azure
-•	Python
-"
-                      startDate="Nov 23"
-                      endDate="Present"
-                    />
-                  </div>
-                  <div className="job">
-                    <ExperienceCard
-                      employer="Nukon"
-                      employerLogo={Nukon}
-                      title="Developer"
-                      summary="Where I support our partners with a wide variety of systems by using a host of technologies, including but not limited to:
-•	Typescript
-•	React
-•	AWS
-•	Azure
-•	Python
-"
-                      startDate="Nov 23"
-                      endDate="Present"
-                    />
+                    <div className="job">
+                      <ExperienceCard
+                        employer="Flinders University"
+                        employerLogo={FlindersUni}
+                        title="Summer Research Award"
+                        summary="During which I used the following technologies to build a novel-writing AI:"
+                        duties={[
+                          "Unity 5",
+                          "Neural Network Object Recognition Software",
+                          "C-Sharp"
+                        ]}
+                        startDate="Dec 21"
+                        endDate="Feb 22"
+                      />
+                    </div>
+
+                    <div className="job">
+                      <ExperienceCard
+                        employer="Flinders University Computer Society"
+                        employerLogo={FUCS}
+                        title="President"
+                        summary="Where I perform various tasks including:"
+                        duties={[
+                          "Running and organising events for computer science students",
+                          "Assisting students during computing related events and study sessions",
+                          "Liaising with businesses and organisations"
+                        ]}
+                        startDate="Mar 22"
+                        endDate="Jul 23"
+                      />
+                    </div>
+
+                    <div className="job">
+                      <ExperienceCard
+                        employer="Flinders University Computer Society"
+                        employerLogo={FUCS}
+                        title="Outreach Officer"
+                        startDate="Aug 21"
+                        endDate="Mar 22"
+                      />
+                    </div>
+
+                    <div className="job">
+                      <ExperienceCard
+                        employer="Flinders University Student Council"
+                        employerLogo={FlindersStudentCouncil}
+                        title="General Council Member"
+                        startDate="Dec 18"
+                        endDate="Nov 19"
+                      />
+                    </div>
+
+                    <div className="job">
+                      <ExperienceCard
+                        employer="Valnet"
+                        employerLogo={Valnet}
+                        title="Content Writer"
+                        startDate="Jan 21"
+                        endDate="Aug 21"
+                      />
+                    </div>
+
+                    <div className="job">
+                      <ExperienceCard
+                        employer="Datacom (Australian Government DHS)"
+                        employerLogo={Datacom}
+                        title="Service Delivery Officer"
+                        startDate="Nov 18"
+                        endDate="May 20"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -353,8 +358,10 @@ const App = () => {
               <h2>Certifications</h2>
               <a href="https://www.credly.com/badges/2f4b8764-54b6-4301-bcf8-6623e7ba1fa9">
                 <img className="cert" alt="aws associate developer" src={AWSDevAss} />
+              </a>{" "}
+              <a href="https://www.credly.com/badges/e889b6b3-4f25-4ca3-90b6-8d4ab166cf3e">
+                <img className="cert" alt="professional scrum developer" src={ProScrumDev} />{" "}
               </a>
-              <img className="cert" alt="professional scrum developer" src={ProScrumDev} />{" "}
             </section>
             <section id="hobbies">
               <h2>Hobbies</h2>
