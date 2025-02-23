@@ -1,0 +1,279 @@
+:root {
+  --primary-colour: #5158bb;
+  --secondary-colour: #e289b2;
+  --tertiary-colour: rgba(253, 186, 95);
+  --text-colour: white;
+}
+a {
+  color: var(--text-colour);
+}
+.cert {
+  max-width: 7rem;
+  max-height: 7rem;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+
+  color: #ffffff;
+}
+html {
+  background: linear-gradient(to bottom, #5158bb, #e289b2);
+}
+
+header {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 500px;
+}
+/* h1 {
+ 
+} */
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+h2 {
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  color: white;
+  margin-top: 20px;
+}
+.cat-image {
+  margin-bottom: -13rem;
+  margin-right: 3rem;
+  z-index: 1;
+  min-height: 438px;
+}
+.fishy-container {
+  z-index: 3;
+  min-height: 64px;
+  padding-top: 10px;
+}
+
+.title {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.centered-page {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  padding: 1rem;
+}
+
+.bio {
+  text-align: center;
+  font-size: large;
+  font-style: italic;
+  width: 90vw;
+}
+p {
+  text-align: center;
+  font-size: large;
+}
+
+.scroll-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 70vw;
+  margin: auto;
+}
+
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  gap: 10px;
+  padding: 10px;
+  width: 80vh;
+  scrollbar-width: none; /* Hide scrollbar on Firefox */
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none; /* Hide scrollbar on Chrome & Safari */
+}
+.scroll-button {
+  background: rgba(48, 14, 104, 0.6);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem; /* Ensures perfect circle */
+  height: 3rem;
+  z-index: 10;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 3rem; /* Matches height to force text centering */
+  transition: background 0.3s ease;
+}
+
+.scroll-button:hover {
+  background: rgba(209, 43, 231, 0.8);
+}
+
+.scroll-button.left {
+  left: -40px; /* Adjust position relative to scroll container */
+}
+
+.scroll-button.right {
+  right: -40px;
+}
+.sparkles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Prevent interaction blocking */
+  overflow: hidden; /* Ensures it doesn't stretch */
+}
+.tech-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.canvas-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1; /* Keeps it behind content */
+  pointer-events: none; /* Prevents interaction */
+}
+
+.app-container {
+  position: relative;
+  overflow-x: auto;
+}
+
+.content {
+  position: relative;
+  padding: 20px;
+  color: white;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}
+
+.flex-centered-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0rem 1rem;
+}
+.translay-logo {
+  max-height: 150px;
+}
+
+.icon {
+  background-color: rgba(1, 1, 1, 0);
+  box-shadow: none;
+  border-width: 0px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.volume-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.job-info {
+  padding: 0 3rem;
+}
+.title-text {
+  font-size: 10em;
+  margin: 0;
+  display: block;
+
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+.card {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+nav ul {
+  display: flex;
+}
+
+@media screen and (max-width: 1171px) {
+  .title-text {
+    font-size: 5em;
+    text-align: center;
+  }
+  .cat-animation,
+  .cat-image {
+    height: 250px;
+    z-index: 1;
+    margin-right: -3rem;
+    margin-bottom: 0px;
+  }
+  .title {
+    align-items: center;
+  }
+
+  .cat-image {
+    min-height: 0px;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
+}
+@media screen and (max-width: 760px) {
+}
+/* debug code for visualising boxes */
+/* * {
+  outline: 1px solid red;
+} */
