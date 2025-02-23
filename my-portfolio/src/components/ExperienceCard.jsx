@@ -23,9 +23,14 @@ const ExperienceCard = ({
           <span className="line-bottom"></span>
         </div>
         <div className="job-info">
-          <div>{employer}</div>
+          <div className="position">{title}</div>{" "}
+          <div
+            className="employer
+        "
+          >
+            {employer}
+          </div>
           <div className="job-details">
-            <div>{title}</div>
             <div className="job-summary">{summary}</div>{" "}
             {duties && duties.length > 0 ? (
               <div className="duties">

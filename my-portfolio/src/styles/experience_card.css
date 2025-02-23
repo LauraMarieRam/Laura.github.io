@@ -1,4 +1,5 @@
-.employer-logo {
+.employer-logo,
+.uni-logo {
   height: 72px;
   width: 72px;
   min-height: 72px;
@@ -11,9 +12,10 @@
 }
 
 .job-details {
-  width: 40vw;
+  width: 35vw;
   display: flex;
   flex-direction: column;
+  padding-top: 1rem;
 }
 .job-date {
   justify-content: space-between;
@@ -75,4 +77,14 @@
 }
 .start-date {
   justify-content: flex-start;
+}
+.employer,
+.uni {
+  font-style: italic;
+}
+
+.position,
+.degree {
+  font-weight: bold;
+  font-size: large;
 }

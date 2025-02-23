@@ -24,13 +24,19 @@ import Datacom from "./assets/jobs/datacom.png"
 import ProjectCard from "./components/ProjectCard"
 
 import Fishy from "./assets/fishy/fishy.png"
+import EducationCard from "./components/EducationCard"
 const NUM_STARS = 75
 
 // ✅ Ensure stars cover the full scrollable height
 const generateStars = () => {
+  console.log("generating stars...")
+
+  console.log(`document.body.clientHeight: ${document.body.clientHeight}`)
+  console.log(`  window.innerHeight: ${window.innerHeight}`)
+
   const pageHeight = Math.max(
-    document.documentElement.scrollHeight,
-    document.body.scrollHeight,
+    // document.documentElement.scrollHeight,
+    // document.body.scrollHeight,
     document.body.clientHeight,
     window.innerHeight
   )
@@ -48,7 +54,9 @@ const App = () => {
   const [stars, setStars] = useState([])
   const [scrollY, setScrollY] = useState(0)
   const canvasRef = useRef(null)
-  const scrollRef = useRef(null) // ✅ Keeping your scroll reference
+  const projectsScrollRef = useRef(null)
+  const techScrollRef = useRef(null)
+
   const [isVolumeOn, setIsVolumeOn] = useState(false)
   const [dangerZoneRef, setDangerZoneRef] = useState(null)
   const [isHovering, setIsHovering] = useState(false)
@@ -57,6 +65,7 @@ const App = () => {
   useEffect(() => {
     setStars(generateStars())
   }, [])
+  console.log("Script started executing...")
 
   // ✅ Update stars if page resizes
   useEffect(() => {
@@ -85,11 +94,11 @@ const App = () => {
       let newY = star.y + scrollY * star.speed * 0.15
       const size = star.size * sizeScale
 
-      // Prevent the star from going beyond the bottom of the canvas
-      if (newY > canvas.height) {
-        newY = Math.random() * canvas.height // Reset star to top
-        star.x = Math.random() * canvas.width // Reset to a new random x position
-      }
+      // // Prevent the star from going beyond the bottom of the canvas
+      // if (newY > canvas.height) {
+      //   newY = Math.random() * canvas.height // Reset star to top
+      //   star.x = Math.random() * canvas.width // Reset to a new random x position
+      // }
 
       ctx.fillStyle = `rgba(253, 186, 95, ${star.opacity * flicker})`
       drawSparkle(ctx, star.x, newY, size) // Draw the star
@@ -121,11 +130,11 @@ const App = () => {
     ctx.fill()
   }
 
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current
+  const scroll = (direction, ref) => {
+    if (ref.current) {
+      const { scrollLeft, clientWidth } = ref.current
       const scrollAmount = clientWidth / 2
-      scrollRef.current.scrollTo({
+      ref.current.scrollTo({
         left: scrollLeft + (direction === "left" ? -scrollAmount : scrollAmount),
         behavior: "smooth"
       })
@@ -144,7 +153,7 @@ const App = () => {
               <div className="cat-image">
                 <DangerZone setDangerZoneRef={setDangerZoneRef} />
               </div>{" "}
-              <h1>Laura Savaglia</h1>
+              <div className="title-text">Laura Savaglia</div>
             </div>
             <nav>
               <ul>
@@ -157,6 +166,9 @@ const App = () => {
                 <li>
                   <a href="#experience">Experience</a>
                 </li>{" "}
+                <li>
+                  <a href="#education">Education</a>
+                </li>
                 <li>
                   <a href="#certifications">Certifications</a>
                 </li>
@@ -174,21 +186,24 @@ const App = () => {
           </header>
           <div className="centered-page">
             <section id="about">
-              <p>
+              <div className="bio">
                 I am a passionate software developer with experience in full-stack development, AI,
                 and game development. Skilled in TypeScript, React, Python, and cloud technologies,
                 I thrive on building innovative solutions. With a strong foundation in both academia
                 and industry, I bring a blend of technical expertise and creativity to every
                 project.
-              </p>
+              </div>
             </section>
             <section id="technologies">
               <h2>Technologies I Work With</h2>
               <div className="scroll-container">
-                <button className="scroll-button left" onClick={() => scroll("left")}>
+                <button
+                  className="scroll-button left"
+                  onClick={() => scroll("left", techScrollRef)}
+                >
                   ‹
                 </button>
-                <div className="horizontal-scroll" ref={scrollRef}>
+                <div className="horizontal-scroll" ref={techScrollRef}>
                   <TechLogo tech="JavaScript" />
                   <TechLogo tech="React" />
                   <TechLogo tech="TypeScript" />
@@ -207,7 +222,10 @@ const App = () => {
                   <TechLogo tech="C++" />
                   <TechLogo tech="C#" />
                 </div>
-                <button className="scroll-button right" onClick={() => scroll("right")}>
+                <button
+                  className="scroll-button right"
+                  onClick={() => scroll("right", techScrollRef)}
+                >
                   ›
                 </button>
               </div>
@@ -217,10 +235,13 @@ const App = () => {
               <div className="flex-row">
                 {" "}
                 <div className="scroll-container">
-                  <button className="scroll-button left" onClick={() => scroll("left")}>
+                  <button
+                    className="scroll-button left"
+                    onClick={() => scroll("left", projectsScrollRef)}
+                  >
                     ‹
                   </button>
-                  <div className="horizontal-scroll" ref={scrollRef}>
+                  <div className="horizontal-scroll" ref={projectsScrollRef}>
                     <ProjectCard title="Translay" image={Translay} summary={"Coming Soon..."} />
                     <ProjectCard title="Novelore" image={Novelore} summary={"Coming Soon..."} />
                     <ProjectCard
@@ -229,7 +250,10 @@ const App = () => {
                       summary={"Coming Soon..."}
                     />
                   </div>
-                  <button className="scroll-button right" onClick={() => scroll("right")}>
+                  <button
+                    className="scroll-button right"
+                    onClick={() => scroll("right", projectsScrollRef)}
+                  >
                     ›
                   </button>
                 </div>
@@ -354,6 +378,23 @@ const App = () => {
                 </div>
               </div>
             </section>{" "}
+            <section id="education">
+              <h2>Education</h2>
+              <div className="flex-row">
+                <EducationCard
+                  uniLogo={FlindersUni}
+                  degree="Bachelor of Computer Science"
+                  university="Flinders University"
+                  dateRange="2021 - 2024"
+                ></EducationCard>{" "}
+                <EducationCard
+                  uniLogo={FlindersUni}
+                  degree="Bachelor of Creative Arts (Digital Media)"
+                  university="Flinders University"
+                  dateRange="2016 - 2021"
+                ></EducationCard>
+              </div>
+            </section>{" "}
             <section id="certifications">
               <h2>Certifications</h2>
               <a href="https://www.credly.com/badges/2f4b8764-54b6-4301-bcf8-6623e7ba1fa9">
@@ -362,15 +403,18 @@ const App = () => {
               <a href="https://www.credly.com/badges/e889b6b3-4f25-4ca3-90b6-8d4ab166cf3e">
                 <img className="cert" alt="professional scrum developer" src={ProScrumDev} />{" "}
               </a>
-            </section>
+            </section>{" "}
             <section id="hobbies">
               <h2>Hobbies</h2>
-              <p>Programming, Dance, Saying "big yawn" whenever my cat yawns</p>
+              <p>
+                Programming, dance, writing, electric guitar, saying "big yawn" whenever my cat
+                yawns.
+              </p>
             </section>{" "}
             <section id="contact">
               <h2>Contact</h2>
               <p>
-                Email: <a href="mailto:laura.savaglia@outlook.com">laura.savaglia@outlook.com</a>
+                <a href="mailto:laura.savaglia@outlook.com">Email Me</a>
               </p>
             </section>
             <section id="built-with">
