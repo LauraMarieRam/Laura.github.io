@@ -8,6 +8,15 @@ import MonsterBakery from "./assets/my-projects/monster_bakery.png"
 import Novelore from "./assets/my-projects/novelore.png"
 import AWSDevAss from "./assets/certs/aws_developer_associate.png"
 import ProScrumDev from "./assets/certs/professional_scrum_developer.png"
+import {
+  MdBiotech,
+  MdWork,
+  MdSchool,
+  MdCardMembership,
+  MdPalette,
+  MdMail,
+  MdBuild
+} from "react-icons/md"
 
 import VolumeToggle from "./components/VolumeToggle"
 import { VolumeProvider } from "./VolumeContext" // Import the provider
@@ -158,25 +167,60 @@ const App = () => {
             <nav>
               <ul>
                 <li>
-                  <a href="#technologies">Technologies I Work With</a>
+                  <a className="logo-nav" href="#technologies">
+                    <MdBiotech />
+                  </a>
+                  <a className="text-nav" href="#technologies">
+                    Technologies I Work With
+                  </a>
                 </li>
                 <li>
-                  <a href="#projects">Cool Stuff I've Built</a>
+                  <a className="logo-nav" href="#projects">
+                    <MdBuild />
+                  </a>
+                  <a className="text-nav" href="#projects">
+                    Cool Stuff I've Built
+                  </a>
                 </li>
                 <li>
-                  <a href="#experience">Experience</a>
-                </li>{" "}
-                <li>
-                  <a href="#education">Education</a>
+                  <a className="logo-nav" href="#experience">
+                    <MdWork />
+                  </a>
+                  <a className="text-nav" href="#experience">
+                    Experience
+                  </a>
                 </li>
                 <li>
-                  <a href="#certifications">Certifications</a>
+                  <a className="logo-nav" href="#education">
+                    <MdSchool />
+                  </a>
+                  <a className="text-nav" href="#education">
+                    Education
+                  </a>
                 </li>
                 <li>
-                  <a href="#hobbies">Hobbies</a>
+                  <a className="logo-nav" href="#certifications">
+                    <MdCardMembership />
+                  </a>
+                  <a className="text-nav" href="#certifications">
+                    Certifications
+                  </a>
                 </li>
                 <li>
-                  <a href="#contact">Contact</a>
+                  <a className="logo-nav" href="#hobbies">
+                    <MdPalette />
+                  </a>
+                  <a className="text-nav" href="#hobbies">
+                    Hobbies
+                  </a>
+                </li>
+                <li>
+                  <a className="logo-nav" href="#contact">
+                    <MdMail />
+                  </a>
+                  <a className="text-nav" href="#contact">
+                    Contact
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -231,32 +275,29 @@ const App = () => {
               </div>
             </section>
             <section id="projects">
-              <h2 className="flex-centred">Cool Stuff I've Built</h2>
-              <div className="flex-row">
-                {" "}
-                <div className="scroll-container">
-                  <button
-                    className="scroll-button left"
-                    onClick={() => scroll("left", projectsScrollRef)}
-                  >
-                    ‹
-                  </button>
-                  <div className="horizontal-scroll" ref={projectsScrollRef}>
-                    <ProjectCard title="Translay" image={Translay} summary={"Coming Soon..."} />
-                    <ProjectCard title="Novelore" image={Novelore} summary={"Coming Soon..."} />
-                    <ProjectCard
-                      title="Monster Bakery"
-                      image={MonsterBakery}
-                      summary={"Coming Soon..."}
-                    />
-                  </div>
-                  <button
-                    className="scroll-button right"
-                    onClick={() => scroll("right", projectsScrollRef)}
-                  >
-                    ›
-                  </button>
+              <h2 className="flex-centred">Cool Stuff I've Built</h2>{" "}
+              <div className="scroll-container">
+                <button
+                  className="scroll-button left"
+                  onClick={() => scroll("left", projectsScrollRef)}
+                >
+                  ‹
+                </button>
+                <div className="horizontal-scroll" ref={projectsScrollRef}>
+                  <ProjectCard title="Translay" image={Translay} summary={"Coming Soon..."} />
+                  <ProjectCard title="Novelore" image={Novelore} summary={"Coming Soon..."} />
+                  <ProjectCard
+                    title="Monster Bakery"
+                    image={MonsterBakery}
+                    summary={"Coming Soon..."}
+                  />
                 </div>
+                <button
+                  className="scroll-button right"
+                  onClick={() => scroll("right", projectsScrollRef)}
+                >
+                  ›
+                </button>
               </div>
             </section>
             <section>
