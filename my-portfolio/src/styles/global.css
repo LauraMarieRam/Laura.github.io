@@ -45,7 +45,7 @@ nav ul {
 
 nav ul li {
   display: inline;
-  margin: 0 15px;
+  margin: 0 10px;
 }
 
 nav ul li a {
@@ -104,7 +104,7 @@ section {
   text-align: center;
   font-size: large;
   font-style: italic;
-  width: 90vw;
+  width: 70vw;
 }
 p {
   text-align: center;
@@ -187,7 +187,6 @@ p {
 
 .content {
   position: relative;
-  padding: 20px;
   color: white;
 }
 
@@ -196,7 +195,11 @@ p {
   flex-direction: row;
   width: auto;
 }
-
+.flex-row-to-column {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}
 .flex-centered-column {
   display: flex;
   flex-direction: column;
@@ -267,7 +270,11 @@ nav ul {
     align-items: center;
     align-content: center;
   }
+  .bio {
+    width: 90vw;
+  }
 }
+
 @media screen and (max-width: 950px) {
   .logo-nav {
     display: flex;
@@ -278,7 +285,12 @@ nav ul {
   .scroll-button {
     display: none;
   }
-}
+  .flex-row-to-column {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center
+  }
 /* debug code for visualising boxes */
 /* * {
   outline: 1px solid red;
@@ -295,7 +307,4 @@ nav,
 .title {
   max-width: 100% !important;
 }
-
-html {
-  padding: 1rem;
 }

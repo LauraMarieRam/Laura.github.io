@@ -14,14 +14,14 @@ const ExperienceCard = ({
   return (
     <div className="card">
       {" "}
-      <div className="flex-row">
+      <div className="flex-row-to-column">
         <img src={employerLogo} className="employer-logo" alt="logo of employer"></img>{" "}
         <div className="timeline-graphic-wrapper">
           {" "}
           <span className={latest ? "line-top-invisible" : "line-top"}></span>
           <span className="dot"></span>
           <span className="line-bottom"></span>
-        </div>
+        </div>   
         <div className="job-info">
           <div className="position">{title}</div>{" "}
           <div
@@ -29,8 +29,11 @@ const ExperienceCard = ({
         "
           >
             {employer}
-          </div>
+          </div><div className="job-date-thin">
+          <div className="date">{startDate}-{endDate}</div>
+        </div>
           <div className="job-details">
+       
             <div className="job-summary">{summary}</div>{" "}
             {duties && duties.length > 0 ? (
               <div className="duties">
@@ -45,7 +48,7 @@ const ExperienceCard = ({
             )}
           </div>
         </div>
-        <div className="job-date">
+        <div className="job-date-wide">
           <div className="start-date">{startDate}</div> <div className="date-delimiter"> - </div>{" "}
           <div className="end-date"> {endDate}</div>
         </div>

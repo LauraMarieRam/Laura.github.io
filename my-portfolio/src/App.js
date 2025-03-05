@@ -150,10 +150,10 @@ const App = () => {
     }
   }
   return (
-    <div>
+    <div className="page">
       <Canvas ref={canvasRef} className="canvas-background" />
       <VolumeProvider>
-        <div>
+        <div className="content">
           <div className="volume-container">
             <VolumeToggle onToggleVolume={setIsVolumeOn} />{" "}
           </div>
@@ -421,7 +421,7 @@ const App = () => {
             </section>{" "}
             <section id="education">
               <h2>Education</h2>
-              <div className="flex-row">
+              <div className="flex-row-to-column">
                 <EducationCard
                   uniLogo={FlindersUni}
                   degree="Bachelor of Computer Science"
