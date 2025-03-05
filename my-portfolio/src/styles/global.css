@@ -4,6 +4,9 @@
   --tertiary-colour: rgba(253, 186, 95);
   --text-colour: white;
 }
+#root {
+  max-width: 100%;
+}
 a {
   color: var(--text-colour);
 }
@@ -42,7 +45,7 @@ nav ul {
 
 nav ul li {
   display: inline;
-  margin: 0 15px;
+  margin: 0 10px;
 }
 
 nav ul li a {
@@ -94,13 +97,14 @@ footer {
 
 section {
   padding: 1rem;
+  max-width: 100%;
 }
 
 .bio {
   text-align: center;
   font-size: large;
   font-style: italic;
-  width: 90vw;
+  width: 70vw;
 }
 p {
   text-align: center;
@@ -111,8 +115,6 @@ p {
   display: flex;
   align-items: center;
   position: relative;
-  width: 100%;
-  max-width: 70vw;
   margin: auto;
 }
 
@@ -135,19 +137,13 @@ p {
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 24px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3rem; /* Ensures perfect circle */
-  height: 3rem;
-  z-index: 10;
+  font-size: 20px;
+  width: 32px; /* Ensures perfect circle */
+  min-width: 32px;
+  height: 32px;
+  z-index: 1;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  line-height: 3rem; /* Matches height to force text centering */
+
   transition: background 0.3s ease;
 }
 
@@ -156,11 +152,9 @@ p {
 }
 
 .scroll-button.left {
-  left: -40px; /* Adjust position relative to scroll container */
 }
 
 .scroll-button.right {
-  right: -40px;
 }
 .sparkles-container {
   position: absolute;
@@ -182,7 +176,6 @@ p {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
   z-index: -1; /* Keeps it behind content */
   pointer-events: none; /* Prevents interaction */
 }
@@ -194,7 +187,6 @@ p {
 
 .content {
   position: relative;
-  padding: 20px;
   color: white;
 }
 
@@ -203,7 +195,11 @@ p {
   flex-direction: row;
   width: auto;
 }
-
+.flex-row-to-column {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}
 .flex-centered-column {
   display: flex;
   flex-direction: column;
@@ -232,7 +228,7 @@ p {
   font-size: 10em;
   margin: 0;
   display: block;
-
+  max-width: 100%;
   font-weight: bold;
   unicode-bidi: isolate;
 }
@@ -243,6 +239,10 @@ p {
 
 nav ul {
   display: flex;
+}
+.logo-nav {
+  display: none;
+  font-size: x-large;
 }
 
 @media screen and (max-width: 1171px) {
@@ -270,10 +270,41 @@ nav ul {
     align-items: center;
     align-content: center;
   }
+  .bio {
+    width: 90vw;
+  }
 }
-@media screen and (max-width: 760px) {
-}
+
+@media screen and (max-width: 950px) {
+  .logo-nav {
+    display: flex;
+  }
+  .text-nav {
+    display: none;
+  }
+  .scroll-button {
+    display: none;
+  }
+  .flex-row-to-column {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center
+  }
 /* debug code for visualising boxes */
 /* * {
   outline: 1px solid red;
 } */
+/* html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+} */
+html,
+body,
+canvas,
+nav,
+.title {
+  max-width: 100% !important;
+}
+}

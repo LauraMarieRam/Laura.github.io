@@ -4,7 +4,7 @@ const EducationCard = ({ degree, university, uniLogo, dateRange }) => {
   return (
     <div className="card">
       {" "}
-      <div className="flex-row">
+      <div className="flex-row-to-column">
         <img src={uniLogo} className="uni-logo" alt="logo of university"></img>{" "}
         <div className="uni-info">
           <div className="degree">{degree}</div>{" "}
