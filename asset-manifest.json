@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Laura.github.io/static/css/main.dd08960d.css",
-    "main.js": "/Laura.github.io/static/js/main.95162a55.js",
+    "main.css": "/Laura.github.io/static/css/main.1ed7ef12.css",
+    "main.js": "/Laura.github.io/static/js/main.2567a317.js",
     "static/js/488.91ee2a69.chunk.js": "/Laura.github.io/static/js/488.91ee2a69.chunk.js",
     "static/media/fucs.png": "/Laura.github.io/static/media/fucs.c859afb5f987b9a78698.png",
     "static/media/fishy.png": "/Laura.github.io/static/media/fishy.215ed33f2a1070724c16.png",
@@ -46,12 +46,12 @@
     "static/media/dynamodb.png": "/Laura.github.io/static/media/dynamodb.fc665d2753c94744d5a5.png",
     "static/media/js.png": "/Laura.github.io/static/media/js.266bd9fb2663dcc057b4.png",
     "index.html": "/Laura.github.io/index.html",
-    "main.dd08960d.css.map": "/Laura.github.io/static/css/main.dd08960d.css.map",
-    "main.95162a55.js.map": "/Laura.github.io/static/js/main.95162a55.js.map",
+    "main.1ed7ef12.css.map": "/Laura.github.io/static/css/main.1ed7ef12.css.map",
+    "main.2567a317.js.map": "/Laura.github.io/static/js/main.2567a317.js.map",
     "488.91ee2a69.chunk.js.map": "/Laura.github.io/static/js/488.91ee2a69.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dd08960d.css",
-    "static/js/main.95162a55.js"
+    "static/css/main.1ed7ef12.css",
+    "static/js/main.2567a317.js"
   ]
 }
